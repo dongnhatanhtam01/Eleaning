@@ -1,0 +1,6 @@
+email: "test3000@gmail.com"
+hoTen: "test3000@test.com"
+maNhom: "GP01"
+matKhau: "test3000@test.com"
+soDT: "1234567890"
+taiKhoan: "test30001"
