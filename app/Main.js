@@ -13,12 +13,15 @@ import Header from "./components/Header"
 Axios.defaults.baseURL = 'https://elearning0706.cybersoft.edu.vn'
 
 function Main() {
+  const [loggedIn, setLoggedIn] = useState(Boolean(localStorage.getItem(
+    "elearningappToken"
+  )))
   return (
     <BrowserRouter>
-      <Header />
+      <Header loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>
       <Switch>
         <Route path="/" exact>
-          <Home  />
+          {loggedIn? <Home /> : <HomeGuest />}
         </Route>
         <Route path="/thanhvien" exact>
           <HomeGuest />

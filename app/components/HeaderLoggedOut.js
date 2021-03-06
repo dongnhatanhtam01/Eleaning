@@ -1,22 +1,27 @@
 import React, { useEffect, useState } from "react"
 import Axios from "axios"
 
-function HeaderLoggedOut() {
+function HeaderLoggedOut(props) {
   const [username, setUserName] = useState()
   const [password, setPassword] = useState()
 
   async function handleSubmit(e) {
     e.preventDefault()
     try {
-      await Axios.post("/api/QuanLyNguoiDung/DangNhap",
+      const response = await Axios.post("/api/QuanLyNguoiDung/DangNhap",
         {
           "taiKhoan": username,
           "matKhau": password
         }
       )
+      if (response.data) {
+        props.setLoggedIn(true)
+        localStorage.setItem("elearningappToken", response.data.accessToken)
+        localStorage.setItem("elearningappUsername", response.data.taiKhoan)
+      }
     }
     catch (e) {
-     console.log("Đăng nhập không thành công");
+      console.log("Đăng nhập không thành công");
     }
   }
   return (
