@@ -1,14 +1,23 @@
-import React, { useEffect } from "react"
-import {Link} from "react-router-dom"
+import React, { useEffect, useContext } from "react"
+import { Link } from "react-router-dom"
+import DispatchContext from "../DispatchContext"
+import StateContext from "../StateContext"
 
 function HeaderLoggedIn(props) {
+  const appState = useContext(StateContext)
+  const appDispatch = useContext(DispatchContext)
+
   function handelLoggedOut() {
-    props.setLoggedIn(false)
-    localStorage.removeItem("elearningappToken" )
-    localStorage.removeItem("elearningappUsername" )
+    appDispatch({ type: "LOG_OUT_ACTION" })
+    // props.setLoggedIn(false)
+    // localStorage.removeItem("elearningappToken" )
+    // localStorage.removeItem("elearningappUsername" )
   }
   return (
     <div className="flex-row my-3 my-md-0">
+      <a href="#" className="text-dark mr-2 ">
+        tài khoản,  {appState.user.taiKhoan}
+      </a>
       <a href="#" className="text-white mr-2 header-search-icon">
         <i className="fas fa-search"></i>
       </a>

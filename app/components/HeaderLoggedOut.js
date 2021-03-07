@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, useContext } from "react"
 import Axios from "axios"
+import DispatchContext from "../DispatchContext"
 
 function HeaderLoggedOut(props) {
+  const appDispatch = useContext(DispatchContext)
   const [username, setUserName] = useState()
   const [password, setPassword] = useState()
 
@@ -15,9 +17,12 @@ function HeaderLoggedOut(props) {
         }
       )
       if (response.data) {
-        props.setLoggedIn(true)
-        localStorage.setItem("elearningappToken", response.data.accessToken)
-        localStorage.setItem("elearningappUsername", response.data.taiKhoan)
+        appDispatch({
+          type: "LOG_IN_ACTION", data: response.data
+        })
+        // props.setLoggedIn(true)
+        // localStorage.setItem("elearningappToken", response.data.accessToken)
+        // localStorage.setItem("elearningappUsername", response.data.taiKhoan)
       }
     }
     catch (e) {
