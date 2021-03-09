@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useContext } from "react"
+import { Link,Route, withRouter } from "react-router-dom"
 import Axios from "axios"
 import DispatchContext from "../DispatchContext"
 
@@ -15,10 +16,12 @@ function HeaderLoggedOut(props) {
           "taiKhoan": username,
           "matKhau": password
         }
+
       )
       if (response.data) {
+        props.history.push("/")
         appDispatch({
-          type: "LOG_IN_ACTION", data: response.data
+          type: "LOG_IN_ACTION", data: { ...response.data, matKhau: password }
         })
         // props.setLoggedIn(true)
         // localStorage.setItem("elearningappToken", response.data.accessToken)
@@ -29,6 +32,7 @@ function HeaderLoggedOut(props) {
       console.log("Đăng nhập không thành công");
     }
   }
+
   return (
     <>
       <form onSubmit={handleSubmit} className="mb-0 pt-2 pt-md-0">
@@ -57,8 +61,11 @@ function HeaderLoggedOut(props) {
           </div>
         </div>
       </form>
+      <div className="col-md-auto">
+        <Link className="btn btn-warning btn-sm" to="/thanhvien">Đăng ký</Link>
+      </div>
     </>
   )
 }
 
-export default HeaderLoggedOut
+export default withRouter(HeaderLoggedOut)

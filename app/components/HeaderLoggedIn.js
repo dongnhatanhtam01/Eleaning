@@ -1,5 +1,6 @@
 import React, { useEffect, useContext } from "react"
 import { Link } from "react-router-dom"
+import { Route , withRouter} from 'react-router-dom'
 import DispatchContext from "../DispatchContext"
 import StateContext from "../StateContext"
 
@@ -7,15 +8,13 @@ function HeaderLoggedIn(props) {
   const appState = useContext(StateContext)
   const appDispatch = useContext(DispatchContext)
 
-  function handelLoggedOut() {
+  function handleLoggedOut() {
     appDispatch({ type: "LOG_OUT_ACTION" })
-    // props.setLoggedIn(false)
-    // localStorage.removeItem("elearningappToken" )
-    // localStorage.removeItem("elearningappUsername" )
+    return props.history.push("/")
   }
   return (
     <div className="flex-row my-3 my-md-0">
-      <a href="#" className="text-dark mr-2 ">
+      <a href="#" className="text-white mr-2 ">
         tài khoản,  {appState.user.taiKhoan}
       </a>
       <a href="#" className="text-white mr-2 header-search-icon">
@@ -34,9 +33,9 @@ function HeaderLoggedIn(props) {
       <Link className="btn btn-sm btn-success mr-2" to="/create-post">
         Create Post
     </Link>
-      <button onClick={handelLoggedOut} className="btn btn-sm btn-danger">Sign Out</button>
+      <button onClick={handleLoggedOut} className="btn btn-sm btn-dark">Sign Out</button>
     </div>
   )
 }
 
-export default HeaderLoggedIn
+export default withRouter(HeaderLoggedIn)

@@ -6,3 +6,10 @@ soDT: "1234567890"
 taiKhoan: "test30001"
 
 
+email: "fdsjhfkdj@gmail.com"
+hoTen: "GV"
+maLoaiNguoiDung: "GV"
+maNhom: "GP01"
+matKhau: "123"
+soDT: "043904930439"
+taiKhoan: "hanGV"

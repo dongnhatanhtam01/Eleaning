@@ -563,6 +563,30 @@ textarea.tall-textarea {
     animation-fill-mode: infinite;
 }
 
+
+/* tamdna custom */
+
+.tamdna-container {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+}
+
+.card {
+    background: #fff;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.card>.card-block {
+    padding: 5px !important;
+}
+
+.card>img {
+    width: 100%;
+}
+
+
+/* end custom  */
+
 @keyframes opacitychange {
     0%,
     100% {

@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useReducer } from "react"
 import ReactDOM from "react-dom"
-import { BrowserRouter, Switch, Route } from "react-router-dom"
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom"
 import Axios from "axios"
 
 import { useImmerReducer } from "use-immer"
 import StateContext from "./StateContext"
 import DispatchContext from "./DispatchContext"
 
+import AccountManagement from "./components/AccountManagement"
 import HomeGuest from "./components/HomeGuest"
 import About from "./components/About"
 import Terms from "./components/Terms"
@@ -21,8 +22,20 @@ function Main() {
     loggedIn: Boolean(localStorage.getItem("elearningappToken")),
     user: {
       accessToken: localStorage.getItem("elearningappToken"),
-      taiKhoan: localStorage.getItem("elearningappUsername")
-    }
+      taiKhoan: localStorage.getItem("elearningappUsername"),
+      matKhau: localStorage.getItem("elearningappPassword")
+    },
+    account: {
+      email: "",
+      hoTen: "",
+      maLoaiNguoiDung: "",
+      maNhom: "",
+      matKhau: "",
+      soDT: "",
+      taiKhoan: "",
+      chiTietKhoaHocGhiDanh: []
+    },
+    courses: []
   }
   function ourReducer(draft, action) {
     switch (action.type) {
@@ -33,6 +46,12 @@ function Main() {
       case "LOG_OUT_ACTION":
         draft.loggedIn = false
         return
+      case "APPROACH_ACCOUNT":
+        draft.account = action.data
+        return
+      case "GET_COURSES":
+        draft.courses = action.data
+        return
     }
   }
 
@@ -42,11 +61,12 @@ function Main() {
     if (state.loggedIn) {
       localStorage.setItem("elearningappToken", state.user.accessToken)
       localStorage.setItem("elearningappUsername", state.user.taiKhoan)
+      localStorage.setItem("elearningappPassword", state.user.matKhau)
     } else {
       localStorage.removeItem("elearningappToken")
+      localStorage.removeItem("elearningappPassword")
       localStorage.removeItem("elearningappUsername")
     }
-
   }, [state.loggedIn])
   // const [loggedIn, setLoggedIn] = useState(Boolean(localStorage.getItem(
   //   "elearningappToken"
@@ -57,14 +77,14 @@ function Main() {
         <BrowserRouter>
           <Header />
           <Switch>
-            <Route path="/" exact>
+            <Route exact path="/"  >
               {state.loggedIn ? <Home /> : <HomeGuest />}
             </Route>
             <Route path="/thanhvien" exact>
-              <HomeGuest />
+              <AccountManagement />
             </Route>
-            <Route path="/gioithieu" exact component={About} />
-            <Route path="/dieukhoan" exact component={Terms} />
+            <Route exact path="/gioithieu" component={About} />
+            <Route exact path="/dieukhoan" component={Terms} />
           </Switch>
           <Footer />
         </BrowserRouter>
