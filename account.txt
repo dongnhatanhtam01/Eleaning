@@ -13,3 +13,14 @@ maNhom: "GP01"
 matKhau: "123"
 soDT: "043904930439"
 taiKhoan: "hanGV"
+
+cap_nhat_thanh_cong
+{
+    "email": "test3000@test.com",
+    "hoTen": "Monovampire",
+    "maLoaiNguoiDung": "HV",
+    "maNhom": "GP01",
+    "matKhau": "123",
+    "soDT": "321456",
+    "taiKhoan": "test3000@test.com"
+}

@@ -80,6 +80,9 @@ function Main() {
             <Route exact path="/"  >
               {state.loggedIn ? <Home /> : <HomeGuest />}
             </Route>
+            <Route exact path="/danh-sach-khoa-hoc">
+              <HomeGuest />
+            </Route>
             <Route path="/thanhvien" exact>
               <AccountManagement />
             </Route>

@@ -3,12 +3,14 @@ import Page from "./Page"
 import StateContext from "../StateContext"
 import AccountDetails from "./AccountDetails"
 import AccountCourseTable from "./AccountCourseTable"
+import {Link, NavLink} from "react-router-dom"
 
 function Home() {
   const appState = useContext(StateContext)
   return (
     <Page title="Trang chủ" wide>
-      <h3 className="text-left   border-bottom">Xin Chào <strong>{appState.user.taiKhoan}</strong>, {" "}</h3>
+      <h4 className="text-left border-bottom">Xin Chào <strong>{appState.user.taiKhoan}</strong>,<NavLink to="/danh-sach-khoa-hoc" style={{color:"#ffc107", textDecoration:"none"}}> (Xem tất cả)</NavLink> {" "}</h4>
+      
 
       <div className="row mt-5">
         <div className="col-3">
