@@ -35,7 +35,8 @@ function Main() {
       taiKhoan: "",
       chiTietKhoaHocGhiDanh: []
     },
-    courses: []
+    courses: [],
+    courseDetails:{}
   }
   function ourReducer(draft, action) {
     switch (action.type) {
@@ -52,6 +53,8 @@ function Main() {
       case "GET_COURSES":
         draft.courses = action.data
         return
+        case "GET_COURSE_DETAILS":
+         draft.courseDetails = action.data
     }
   }
 

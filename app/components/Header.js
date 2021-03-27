@@ -10,7 +10,7 @@ function Header() {
     <header className="header-bar bg-warning mb-3">
       <div className="container d-flex flex-column flex-md-row align-items-center p-3">
         <h4 className="my-0 mr-md-auto font-weight-normal">
-          <Link to="/" className="text-white">
+          <Link to="/" className="text-white" style={{textDecoration:"none"}} >
             Trang học trực tuyến
         </Link>
         </h4>
