@@ -14,6 +14,7 @@ import Terms from "./components/Terms"
 import Footer from "./components/Footer"
 import Home from "./components/Home"
 import Header from "./components/Header"
+import CourseDetailsPage from "./components/CourseDetailsPage"
 
 Axios.defaults.baseURL = 'https://elearning0706.cybersoft.edu.vn'
 
@@ -86,6 +87,7 @@ function Main() {
             <Route exact path="/danh-sach-khoa-hoc">
               <HomeGuest />
             </Route>
+            <Route exact path="/chitiet/:maKhoaHoc" component={CourseDetailsPage}/>
             <Route path="/thanhvien" exact>
               <AccountManagement />
             </Route>

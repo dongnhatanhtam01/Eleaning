@@ -3,6 +3,7 @@ body {
 }
 
 .header-bar {
+    margin: 0 !important;
     background-color: #292929;
 }
 
