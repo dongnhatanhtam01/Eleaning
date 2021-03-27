@@ -34,7 +34,7 @@ function HeaderLoggedIn(props) {
           src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.flaticon.com%2Ffree-icon%2Fnice_3159075&psig=AOvVaw22lhzxrT9gGBa8m2FZnr7U&ust=1615103528423000&source=images&cd=vfe&ved=2ahUKEwic4PvRl5vvAhVIAN4KHRnXDYUQjRx6BAgAEAc"
         />
       </a> */}
-      <Link className="btn btn-sm btn-primary mr-2" to="/create-post">
+      <Link className="btn btn-sm btn-primary mr-2" to="/create-post" >
         Create Post
     </Link>
       <button onClick={handleLoggedOut} className="btn btn-sm btn-dark">Sign Out</button>
