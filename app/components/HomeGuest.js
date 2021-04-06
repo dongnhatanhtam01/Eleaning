@@ -4,6 +4,7 @@ import Axios from "axios"
 import DispatchContext from "../DispatchContext"
 import StateContext from "../StateContext"
 import { withRouter } from "react-router-dom"
+import CoursesRegist from "../common/components/CourseRegist"
 
 const buttonStyle = { display: "inlineBlock", textDecoration: "none" }
 
@@ -35,6 +36,44 @@ function HomeGuest(props) {
   /*appDispatch({ type: "GET_COURSE_DETAILS", data: {itemCode} })*/
   props.history.push(`/chitiet/${itemCode}`)
  }
+ const callbackFunction = (childData) => {
+  alert(childData)
+ }
+ // check object existed in array
+ function handleCheck(checkArgs) {
+  console.log(appState.account.chiTietKhoaHocGhiDanh.some(item => checkArgs.maKhoaHoc === item.maKhoaHoc));
+  return appState.account.chiTietKhoaHocGhiDanh.some(item => checkArgs.maKhoaHoc === item.maKhoaHoc)
+ }
+ // regist courses 
+ async function courseRegist(maKhoaHoc) {
+  try {
+   const response = await Axios.post(`/api/QuanLyKhoaHoc/DangKyKhoaHoc`, {
+    maKhoaHoc,
+    "taiKhoan": appState.user.taiKhoan
+   }, {
+    headers: {
+     'Authorization': `Bearer ${appState.user.accessToken}`
+    }
+   })
+   if (response.data) {
+    appDispatch({
+     type: "GET_COURSE_DETAILS", data: { ...response.data }
+    })
+   }
+  }
+  catch (e) {
+   console.log("This must be some errors!");
+   alert(e.response.data)
+  }
+ }
+ function handleCourseRegist(val) {
+  if (handleCheck(val)) {
+   alert("this is existed!")
+  }
+  else {
+   courseRegist(val.maKhoaHoc)
+  }
+ }
 
 
  return (
@@ -53,16 +92,17 @@ function HomeGuest(props) {
           onClick={() => { passCourseCode(item.maKhoaHoc) }}
           className="btn btn-primary btn-sm mr-2"
           style={buttonStyle}
-          href="#"><i class="fa fa-ellipsis-v" aria-hidden="true"></i><span className="mr-2"> </span> Chi tiết
+          href="#"><i className="fa fa-ellipsis-v" aria-hidden="true"></i><span className="mr-2"> </span> Chi tiết
           </button>
-          <button
-          onClick={() => { passCourseCode(item.maKhoaHoc) }}
-          className="btn btn-primary btn-sm mr-2 "
+         {/* <CoursesRegist dataFromParent={item} parentCallback={callbackFunction} /> */}
+         <button
+          onClick={() => { handleCourseRegist(item) }}
+          className="btn btn-dark btn-sm mr-2 "
           style={buttonStyle}
-          href="#"><i class="fa fa-ellipsis-v" aria-hidden="true"></i><span className="mr-2"> </span> Chi tiết
-          </button>
+          href="#"><i className="fa fa-plus-circle" aria-hidden="true"></i>
+         </button>
          <small className="card-text mt-2" style={{ maxWidth: '100%', maxHeight: '100px', overflow: "hidden", display: "block" }} >{(item.moTa.length > 30) ? `${item.moTa.substring(0, 100) + "..."}` : item.moTa}</small>
-         <div class="card-footer" style={{
+         <div className="card-footer" style={{
           width: "100%",
           position: "absolute",
           bottom: "0",

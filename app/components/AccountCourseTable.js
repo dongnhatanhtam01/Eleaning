@@ -5,7 +5,7 @@ function AccountCourseTable() {
   const appState = useContext(StateContext)
   return (
     // chiTietKhoaHocGhiDanh
-    <table className="table table-fit">
+    <table className="table table-fit mb-5" style={{height:"100vh"}}>
       <thead className="thead-dark">
         <tr>
           <th scope="col">#</th>
