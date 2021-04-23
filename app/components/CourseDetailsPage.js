@@ -32,7 +32,7 @@ const styleObject = {
  maxHeight: "500px",
  height: "1000px",
  marginTop: "0",
- backgroundImage: `url("../assets/img/2-forest.jpg")`, /* The image used */
+ backgroundImage: `url("../assets/img/banner.jpg")`, /* The image used */
  backgroundColor: "#cccccc", /* Used if the image is unavailable */
  backgroundPosition: "center", /* Center the image */
  backgroundRepeat: "no-repeat", /* Do not repeat the image */
