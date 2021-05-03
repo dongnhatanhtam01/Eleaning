@@ -5,7 +5,7 @@ const Dotenv = require('dotenv-webpack')
 module.exports = {
  plugins: [
   new Dotenv()
-],
+ ],
  node: {
   fs: 'empty'
  },
@@ -42,7 +42,18 @@ module.exports = {
       presets: ["@babel/preset-react", ["@babel/preset-env", { targets: { node: "12" } }]]
      }
     }
-   }
+   },
+   {
+    test: /\.s[ac]ss$/i,
+    use: [
+      // Creates `style` nodes from JS strings
+      "style-loader",
+      // Translates CSS into CommonJS
+      "css-loader",
+      // Compiles Sass to CSS
+      "sass-loader",
+    ],
+  },
   ]
  }
 }

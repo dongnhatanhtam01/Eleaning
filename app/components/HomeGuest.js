@@ -78,7 +78,7 @@ function HomeGuest(props) {
 
  return (
   <Page title="Home Guest" wide={true}>
-   <div className="row " style={{ alignItems: 'baseline' }}>
+   <div className="row home_container " style={{ alignItems: 'baseline' }}>
     {appState.courses.map((item, index) => {
      return (
       <div className="card-deck col-3" key={index} style={{ minHeight: '200px', marginLeft: "0", marginRight: "0" }}>

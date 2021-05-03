@@ -26,11 +26,12 @@ function Main() {
  const [courseDemo, setCourseDemo] = useState([])
  useEffect(() => {
   console.log(process.env.REACT_APP_API_URL);
+  const ourRequest = Axios.CancelToken.source()
 
   const fetchCourseDemo = async () => {
    try {
     const params = { maNhom: 'GP01' }
-    const response = await courseAPI.getAll(params)
+    const response = await courseAPI.getAll(params, { cancelToken: ourRequest.token })
     console.log('Fetch courses successfully', response)
     setCourseDemo(response.data)
    }
@@ -39,6 +40,9 @@ function Main() {
    }
   }
   fetchCourseDemo()
+  return () => {
+   ourRequest.cancel()
+  }
  }, [])
 
 

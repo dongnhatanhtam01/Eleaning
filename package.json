@@ -36,7 +36,6 @@
         "react-transition-group": "^4.3.0",
         "socket.io-client": "^2.3.0",
         "use-immer": "^0.4.0",
-        "webpack": "^4.43.0",
         "webpack-cli": "^3.3.11",
         "webpack-dev-server": "^3.10.3"
     },
@@ -44,6 +43,9 @@
         "@babel/plugin-proposal-class-properties": "^7.13.0",
         "css-loader": "^5.2.0",
         "react-web-component-style-loader": "^0.1.4-alpha",
-        "style-loader": "^2.0.0"
+        "sass": "^1.32.12",
+        "sass-loader": "^10.1.1",
+        "style-loader": "^2.0.0",
+        "webpack": "^4.46.0"
     }
 }

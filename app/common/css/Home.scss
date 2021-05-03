@@ -1,0 +1,7 @@
+$spacer: 10rem;
+$spacers: ( 0: 0, 1: ($spacer * .125), 2: ($spacer * .25), 3: ($spacer * .375), 4: ($spacer * .5), 5: ($spacer * 0.75), 6: ($spacer * 1));
+.home_container {
+    margin-top: map-get($spacers, 3);
+    margin-bottom: map-get($spacers, 3);
+    max-height: 100%;
+}
